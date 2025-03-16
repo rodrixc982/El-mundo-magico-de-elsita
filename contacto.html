@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Mágico - Elsita</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --color-primario: #FF6B6B;
+            --color-secundario: #4ECDC4;
+            --color-terciario: #FFE66D;
+        }
+
+        body {
+            background: radial-gradient(circle at top left, 
+                var(--color-primario), 
+                var(--color-secundario), 
+                var(--color-terciario));
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .rainbow-text {
+            font-family: 'Bangers', cursive;
+            background: linear-gradient(45deg, 
+                #FF0000, #FF7F00, #FFFF00, 
+                #00FF00, #0000FF, #4B0082, 
+                #8F00FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 3s linear infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-pills .nav-link {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            margin: 0 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+        }
+
+        .nav-pills .nav-link:hover {
+            transform: scale(1.1) rotate(3deg);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .magic-form {
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .form-control {
+            border: 3px solid var(--color-secundario);
+            border-radius: 15px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primario);
+            box-shadow: 0 0 15px rgba(255,107,107,0.3);
+            transform: scale(1.02);
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            border: 3px solid var(--color-secundario);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-button {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .magic-btn {
+            background: linear-gradient(45deg, 
+                var(--color-primario), 
+                var(--color-secundario));
+            color: white !important;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .magic-btn:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .magic-social {
+            border-radius: 15px !important;
+            border: 2px solid white !important;
+            transition: all 0.3s ease !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px;
+        }
+
+        .magic-social:hover {
+            transform: scale(1.05) rotate(3deg) !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+        }
+
+        .magic-social i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center py-4 position-relative">
+        <h1 class="rainbow-text display-1 mb-4">📬 Contacto Mágico ✨</h1>
+        <nav class="nav nav-pills justify-content-center">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a class="nav-link" href="galeria.html">Galería</a>
+            <a class="nav-link active" href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <div class="magic-form">
+                    <h2 class="text-center mb-4" style="color: var(--color-primario)">📩 Envíanos un Mensaje</h2>
+                    <form>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Tu Nombre" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="tel" class="form-control" placeholder="Teléfono">
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="Tu Mensaje Mágico..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn magic-btn">✨ Enviar Mensaje</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contact-card">
+                    <h3 class="text-center mb-4" style="color: var(--color-secundario)">📌 Información de Contacto</h3>
+                    <div class="text-center">
+                        <p class="fs-4">📞 Teléfono: <a href="tel:+51945038946">+51 945038946</a></p>
+                        <p class="fs-4">📧 Email: <a href="mailto:contacto@elsita.com">contacto@elsita.com</a></p>
+                        <p class="fs-4">📍 Dirección: Calle Mágica 123, Ciudad Feliz</p>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <h4 style="color: var(--color-primario)">🌟 Síguenos en Redes</h4>
+                        <div class="row justify-content-center g-3 mt-3">
+                            <div class="col-auto">
+                                <a href="https://facebook.com/tupagina" 
+                                   class="btn btn-primary magic-social"
+                                   target="_blank"
+                                   style="background-color: #1877f2">
+                                    <i class="bi bi-facebook"></i> Facebook
+                                </a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="https://instagram.com/tucuenta" 
+                                   class="btn btn-danger magic-social"
+                                   target="_blank"
+                                   style="background: linear-gradient(45deg, #405DE6, #E1306C)">
+                                    <i class="bi bi-instagram"></i> Instagram
+                                </a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="https://tiktok.com/@tucuenta" 
+                                   class="btn btn-dark magic-social"
+                                   target="_blank">
+                                    <i class="bi bi-tiktok"></i> TikTok
+                                </a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="https://youtube.com/tucanal" 
+                                   class="btn btn-danger magic-social"
+                                   target="_blank">
+                                    <i class="bi bi-youtube"></i> YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <h4 style="color: var(--color-primario)">🌍 Encuéntranos</h4>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.59521848573444!3d6.201646528411325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4682507c5dabdb%3A0x9391c5d3b21807e6!2sPlaza%20Botero!5e0!3m2!1ses!2sco!4v1622676341417!5m2!1ses!2sco" 
+                                    style="border:3px solid var(--color-secundario);border-radius:15px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="whatsapp-button position-fixed bottom-0 end-0 m-4">
+        <a href="https://wa.me/51945038946" class="btn btn-success btn-lg fw-bold px-4 py-3">
+            📱 ¡Escríbenos por WhatsApp!
+        </a>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('.magic-btn');
+            btn.classList.add('animate__animated', 'animate__rubberBand');
+            setTimeout(() => {
+                btn.classList.remove('animate__animated', 'animate__rubberBand');
+                alert('¡Tu mensaje mágico ha sido enviado! 🎉');
+            }, 1000);
+        });
+
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'rotate(2deg) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
