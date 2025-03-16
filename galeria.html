@@ -169,6 +169,20 @@
             0% { transform: translateY(100vh) rotate(0deg); }
             100% { transform: translateY(-100vh) rotate(360deg); }
         }
+
+        .comments-section {
+            margin-top: 10px;
+        }
+
+        .comment-input {
+            width: 70%;
+            margin-right: 5px;
+        }
+
+        .comments-list {
+            margin-top: 10px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -188,7 +202,9 @@
                 <span class="gallery-filter mx-3" data-filter="all">✨ Todas</span>
                 <span class="gallery-filter mx-3" data-filter="cumple">🎂 Cumpleaños</span>
                 <span class="gallery-filter mx-3" data-filter="shows">🎪 Shows</span>
-                <span class="gallery-filter mx-3" data-filter="magia">🪄 Magia</span>
+                <span class="gallery-filter mx-3" data-filter="magia">🪄 Baby Shower</span>
+				 <span class="gallery-filter mx-3" data-filter="magia">🪄 Revelación de Sexo</span>
+				  <span class="gallery-filter mx-3" data-filter="magia">🪄 Hora Loca</span>
             </div>
         </div>
 
@@ -199,6 +215,12 @@
                     <img src="img/1.jpeg" class="img-fluid" alt="Cumpleaños mágico">
                     <div class="p-3 text-center" style="background: linear-gradient(45deg, var(--color-primario), var(--color-secundario))">
                         <p class="mb-0 text-white">¡Fiesta de unicornios! 🦄</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,6 +231,12 @@
                     <img src="img/2.jpeg" class="img-fluid" alt="Show infantil">
                     <div class="p-3 text-center" style="background-color: var(--color-secundario)">
                         <p class="mb-0 text-white">Espectáculo de payasos 🤡</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,20 +247,80 @@
                     <img src="img/3.jpeg" class="img-fluid" alt="Trucos de magia">
                     <div class="p-3 text-center" style="background-color: var(--color-primario)">
                         <p class="mb-0 text-white">Magia con Elsita 🎩</p>
-                    </div>
-                </div>
-            </div>
-			
-			<!-- Item 3 -->
-            <div class="col-md-4 col-lg-3" data-category="magia">
-                <div class="magic-card">
-                    <img src="img/3.jpeg" class="img-fluid" alt="Trucos de magia">
-                    <div class="p-3 text-center" style="background-color: var(--color-primario)">
-                        <p class="mb-0 text-white">Navidad 🎩</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Item 4 -->
+            <div class="col-md-4 col-lg-3" data-category="magia">
+                <div class="magic-card">
+                    <img src="img/3.jpeg" class="img-fluid" alt="Baby Shower">
+                    <div class="p-3 text-center" style="background-color: var(--color-primario)">
+                        <p class="mb-0 text-white">Navidad 🎩</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<!-- Item 4 -->
+            <div class="col-md-4 col-lg-3" data-category="magia">
+                <div class="magic-card">
+                    <img src="img/4.jpeg" class="img-fluid" alt="Revelación de Sexo">
+                    <div class="p-3 text-center" style="background-color: var(--color-primario)">
+                        <p class="mb-0 text-white">Cumpleaño Infantil 🎩</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<!-- Item 4 -->
+            <div class="col-md-4 col-lg-3" data-category="magia">
+                <div class="magic-card">
+                    <img src="img/5.jpeg" class="img-fluid" alt="Trucos de magia">
+                    <div class="p-3 text-center" style="background-color: var(--color-primario)">
+                        <p class="mb-0 text-white">Elsita 🎩</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<!-- Item 4 -->
+            <div class="col-md-4 col-lg-3" data-category="magia">
+                <div class="magic-card">
+                    <img src="img/6.jpeg" class="img-fluid" alt="Hora Loca">
+                    <div class="p-3 text-center" style="background-color: var(--color-primario)">
+                        <p class="mb-0 text-white">Hora Loca 🎩</p>
+                        <button class="btn btn-danger like-button">❤️ Me Gusta</button>
+                        <div class="comments-section">
+                            <input type="text" class="comment-input" placeholder="Escribe tu comentario...">
+                            <button class="btn btn-primary submit-comment">Comentar</button>
+                            <div class="comments-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
             <!-- Agregar más items siguiendo el mismo patrón -->
         </div>
 
@@ -298,6 +386,29 @@
             document.body.appendChild(container);
         }
         createStars();
+
+        // Manejo de "Me Gusta" y comentarios
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentText = button.textContent;
+                const likeCount = currentText.match(/\d+/) ? parseInt(currentText.match(/\d+/)[0]) : 0;
+                button.textContent = `❤️ Me Gusta (${likeCount + 1})`;
+            });
+        });
+
+        document.querySelectorAll('.submit-comment').forEach(button => {
+            button.addEventListener('click', () => {
+                const commentInput = button.previousElementSibling;
+                const commentText = commentInput.value.trim();
+                if (commentText) {
+                    const commentsList = button.nextElementSibling;
+                    const newComment = document.createElement('p');
+                    newComment.textContent = commentText;
+                    commentsList.appendChild(newComment);
+                    commentInput.value = ''; // Limpiar el campo de entrada
+                }
+            });
+        });
     </script>
 </body>
 </html>
