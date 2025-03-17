@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Mundo Mágico - Elsita</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-	<link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
@@ -79,39 +79,68 @@
         }
 
         .package-card {
-            background: rgba(255,255,255,0.9);
+            background: linear-gradient(145deg, 
+                var(--color-primario), 
+                var(--color-secundario));
             border-radius: 20px;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--color-terciario);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
+            min-height: 300px;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255,255,255,0.2), 
+                transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .package-card:hover::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        .package-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .package-card ul {
+            font-size: 0.9rem;
+            padding-left: 1rem;
+        }
+
+        .package-card li {
+            margin-bottom: 0.5rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            margin-right: 5px;
         }
 
         .package-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .emoji-burst::after {
-            content: '✨🎉🎈';
-            position: absolute;
-            font-size: 2rem;
-            animation: burst 1s ease-out;
-        }
-
-        @keyframes burst {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
-        }
-
-        .whatsapp-button {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .magic-alert {
@@ -125,12 +154,6 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .alert-content {
@@ -173,19 +196,49 @@
             color: #000;
         }
 
-        #confirmBtn:hover {
-            transform: scale(1.1) rotate(3deg);
-            box-shadow: 0 5px 15px rgba(255,230,109,0.5);
-        }
-
         #cancelBtn {
             background: rgba(255,255,255,0.9);
             color: var(--color-primario);
         }
 
-        #cancelBtn:hover {
-            transform: scale(1.1) rotate(-3deg);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.5);
+        .magic-alert .form-control {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid white;
+            border-radius: 15px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--color-primario);
+            font-family: 'Comic Neue', cursive;
+        }
+
+        .magic-alert .form-control::placeholder {
+            color: var(--color-secundario);
+            opacity: 0.8;
+        }
+
+        #detailsForm {
+            display: none;
+        }
+
+        .video-frame {
+            border: 5px solid var(--color-terciario);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255,230,109,0.5);
+            position: relative;
+            padding: 10px;
+            background: white;
+            animation: frame-glow 2s infinite alternate;
+        }
+
+        @keyframes frame-glow {
+            from { box-shadow: 0 0 20px rgba(255,230,109,0.5); }
+            to { box-shadow: 0 0 40px rgba(255,230,109,0.8); }
+        }
+
+        .video-container {
+            border-radius: 15px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -194,16 +247,32 @@
         <div class="alert-content">
             <h3 class="rainbow-text mb-4">✨ ¿Quieres este paquete mágico? ✨</h3>
             <p id="packageNameAlert" class="text-white fs-3"></p>
-            <div class="alert-buttons">
+            
+            <div class="alert-buttons" id="initialButtons">
                 <button class="magic-alert-btn" id="confirmBtn">¡Sí, quiero magia! 🪄</button>
                 <button class="magic-alert-btn" id="cancelBtn">Todavía no 🎭</button>
             </div>
+
+            <form id="detailsForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Tu nombre" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Presupuesto aproximado" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Ubicación del evento" required>
+                </div>
+                <div class="alert-buttons">
+                    <button type="submit" class="magic-alert-btn">Enviar 📨</button>
+                    <button type="button" class="magic-alert-btn" onclick="hideMagicAlert()">Cancelar 🚫</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <header class="text-center py-4 position-relative">
-        <div class="emoji-burst"></div>
-        <h1 class="rainbow-text display-1 mb-4">🎪  	Mundo  Mágico de Elsita 🎠</h1>
+        <h1 class="rainbow-text display-1 mb-4">🎪 Mundo Mágico de Elsita 🎠</h1>
         <nav class="nav nav-pills justify-content-center">
             <a class="nav-link" href="#">Inicio</a>
             <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
@@ -218,97 +287,108 @@
                 <img src="img/2.jpeg" alt="Sombrero mágico" class="img-fluid" style="max-width: 200px;">
             </div>
             <h2 class="display-3 fw-bold text-white text-shadow">¡Diversión Garantizada!</h2>
-            <p class="lead fs-2 text-white">Cumpleaños -  Baby Shower - Revelación de Sexo -etc</p>
+            <p class="lead fs-2 text-white">Cumpleaños - Baby Shower - Revelación de Sexo - etc</p>
             
-            <div class="row g-4 mt-5">
+            <div class="row g-4 mt-3">
                 <div class="col-md-4">
-                    <div class="package-card p-4">
-                        <h3>🥳 Paquete Show Infantil</h3>
-             <ul class="list-unstyled fs-5">
-             <li>⏱️ 1 hora de show</li>
-             <li>🎭 2 personajes</li>
-             <li>🧩 Juegos didácticos y divertidos</li>
-             <li>👯 Coreografías infantiles</li>
-             <li>🫧 Burbujas gigantes</li>
-             <li>🎶 Música y baile</li>
-             </ul>
+                    <div class="package-card p-3">
+                        <h3>🥳 Show Infantil</h3>
+                        <ul class="list-unstyled">
+                            <li>⏱️ 1 hora</li>
+                            <li>🎭 2 personajes</li>
+                            <li>🧩 Juegos didácticos</li>
+                            <li>👯 Coreografías</li>
+                            <li>🫧 Burbujas gigantes</li>
+                            <li>🎶 Música y baile</li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="col-md-4">
-                    <div class="package-card p-4">
-                       <h3>👶 Paquete Baby Shower</h3>
-<ul class="list-unstyled fs-5">
-    <li>🍼 2 Pampers</li>
-    <li>🎈 20 globos largos</li>
-    <li>🎲 Juegos interactivos</li>
-    <li>🎉 Mini hora loca</li>
-    <li>🪄 Magia y malabares</li>
-    <li>🎨 Pintacaritas</li>
-</ul>
+                    <div class="package-card p-3">
+                        <h3>👶 Baby Shower</h3>
+                        <ul class="list-unstyled">
+                            <li>🍼 2 Pampers</li>
+                            <li>🎈 20 globos</li>
+                            <li>🎲 Juegos</li>
+                            <li>🎉 Hora loca</li>
+                            <li>🪄 Magia</li>
+                            <li>🎨 Pintacaritas</li>
+                        </ul>
                     </div>
                 </div>
-                    <div class="col-md-3">
-        <div class="package-card p-4">
-            <h3>🎀 Paquete Revelación de Sexo</h3>
-            <ul class="list-unstyled fs-5">
-                <li>🎯 Juegos temáticos interactivos</li>
-                <li>💡 Dinámicas adivinación</li>
-                <li>🎁 Revelación con globos/confeti</li>
-                <li>📸 Fotografía especializada</li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="package-card p-4">
-            <h3>🎄 Paquete Navideño</h3>
-            <ul class="list-unstyled fs-5">
-                <li>🕺 Coreografías villancicos</li>
-                <li>🎲 Juegos de regalos</li>
-                <li>🎈 20 globos tematizados</li>
-                <li>🍭 Candy bar festivo</li>
-            </ul>
-        </div>
-    </div>
+                <div class="col-md-4">
+                    <div class="package-card p-3">
+                        <h3>🎀 Revelación</h3>
+                        <ul class="list-unstyled">
+                            <li>🎯 Juegos temáticos</li>
+                            <li>💡 Dinámicas</li>
+                            <li>🎁 Revelación</li>
+                            <li>📸 Fotografía</li>
+                        </ul>
+                    </div>
+                </div>
 
-    <div class="col-md-3">
-        <div class="package-card p-4">
-            <h3>🎉 Paquete Hora Loca</h3>
-            <ul class="list-unstyled fs-5">
-                <li>🎈 Bolsa globos XL</li>
-                <li>🎵 Playlist hiperactiva</li>
-                <li>💫 Accesorios luminosos</li>
-                <li>🕺💃 Bailes virales</li>
-            </ul>
-        </div>
-    </div>
+                <div class="col-md-4">
+                    <div class="package-card p-3">
+                        <h3>🌟 Neon Party</h3>
+                        <ul class="list-unstyled">
+                            <li>🔦 Blacklight</li>
+                            <li>🌈 Maquillaje UV</li>
+                            <li>🪩 Pista LED</li>
+                            <li>🎇 Efectos UV</li>
+                        </ul>
+                    </div>
+                </div>
 
-    <div class="col-md-3">
-        <div class="package-card p-4">
-            <h3>🌟 Paquete Neon Party</h3>
-            <ul class="list-unstyled fs-5">
-                <li>🔦 Juegos con blacklight</li>
-                <li>🌈 Maquillaje fluorescente</li>
-                <li>🪩 Pista de baile LED</li>
-                <li>🎇 Efectos brillo UV</li>
-            </ul>
-        </div>
-    </div>
+                <div class="col-md-4">
+                    <div class="package-card p-3">
+                        <h3>🎉 Hora Loca</h3>
+                        <ul class="list-unstyled">
+                            <li>🎈 Globos XL</li>
+                            <li>🎵 Playlist</li>
+                            <li>💫 Luminosos</li>
+                            <li>🕺💃 Bailes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="package-card p-3">
+                        <h3>🎄 Navidad</h3>
+                        <ul class="list-unstyled">
+                            <li>🕺 Villancicos</li>
+                            <li>🎲 Regalos</li>
+                            <li>🎅 Santa</li>
+                            <li>🍭 Candy bar</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="mb-5">
             <h2 class="text-center display-4 fw-bold mb-4">🎥 Nuestros Shows en Acción</h2>
-            <div class="ratio ratio-16x9">
-                <iframe class="rounded-3" 
-                        src="https://www.youtube.com/embed/VpfVygVM2KY" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+            <div class="video-frame">
+                <div class="video-container">
+                    <div class="ratio ratio-16x9">
+                        <iframe class="rounded-3" 
+                                src="https://www.youtube.com/embed/VpfVygVM2KY" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
+	<footer class="text-center py-3 text-white" style="background: rgba(0, 0, 0, 0.7);">
+    <div class="container">
+        <p class="mb-0">Página creada por <a href="https://www.linkedin.com/in/rodrixc-tianz-tv-oficial-8a9577204/" target="_blank" class="text-warning">Rodrixc Tianz</a> - © <span id="currentYear"></span> Todos los derechos reservados</p>
+    </div>
+</footer>
+	
     <div class="whatsapp-button position-fixed bottom-0 end-0 m-4">
         <a href="https://wa.me/51945038946" class="btn btn-success btn-lg fw-bold px-4 py-3">
             📱 ¡Reserva Ahora! <span class="d-none d-md-inline">por WhatsApp</span>
@@ -316,64 +396,53 @@
     </div>
 
     <script>
-        // Funcionalidad de paquetes
         document.querySelectorAll('.package-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.classList.add('emoji-burst');
-                setTimeout(() => card.classList.remove('emoji-burst'), 1000);
-                
+            card.addEventListener('click', () => {
                 const packageName = card.querySelector('h3').innerText;
                 showMagicAlert(packageName);
             });
         });
 
-        // Funcionalidad de alerta
         function showMagicAlert(packageName) {
             const alert = document.getElementById('customAlert');
             document.getElementById('packageNameAlert').textContent = packageName;
             alert.style.display = 'flex';
-            alert.querySelector('.alert-content').classList.add('animate__animated', 'animate__heartBeat');
+            document.getElementById('initialButtons').style.display = 'flex';
+            document.getElementById('detailsForm').style.display = 'none';
+            document.getElementById('detailsForm').reset();
         }
 
         function hideMagicAlert() {
-            const alert = document.getElementById('customAlert');
-            alert.style.display = 'none';
-            alert.querySelector('.alert-content').classList.remove('animate__animated', 'animate__heartBeat');
+            document.getElementById('customAlert').style.display = 'none';
         }
 
         document.getElementById('confirmBtn').addEventListener('click', () => {
+            document.getElementById('initialButtons').style.display = 'none';
+            document.getElementById('detailsForm').style.display = 'block';
+        });
+
+        document.getElementById('detailsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputs = e.target.querySelectorAll('input');
             const packageName = document.getElementById('packageNameAlert').textContent;
-            const message = `¡Hola Elsita! 🎉\n\nQuiero contratar tu paquete mágico:\n✨ ${packageName} ✨\n\nPor favor contáctame para coordinar los detalles. 🪄`;
+            
+            const message = `¡Hola Elsita! 🎉\n\nQuiero contratar tu paquete:\n✨ ${packageName} ✨\n\n` +
+                         `Nombre: ${inputs[0].value}\n` +
+                         `Presupuesto: ${inputs[1].value}\n` +
+                         `Ubicación: ${inputs[2].value}\n\n` +
+                         `Por favor contáctame para coordinar los detalles. 🪄`;
+
             window.open(`https://wa.me/51945038946?text=${encodeURIComponent(message)}`, '_blank');
             hideMagicAlert();
         });
 
         document.getElementById('cancelBtn').addEventListener('click', hideMagicAlert);
 
-        // Navegación corregida
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                link.classList.add('animate__animated', 'animate__rubberBand');
-                setTimeout(() => {
-                    link.classList.remove('animate__animated', 'animate__rubberBand');
-                }, 1000);
-
-                if(link.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js")
-      .then(() => console.log("Service Worker registrado"))
-      .catch(error => console.log("Error al registrar el Service Worker:", error));
-  }
-</script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(() => console.log("Service Worker registrado"))
+                .catch(error => console.log("Error:", error));
+        }
+    </script>
 </body>
 </html>
